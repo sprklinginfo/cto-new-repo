@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "achievements": [
+    {
+      "id": "ach_streak_3",
+      "title": "3-Day Spark",
+      "description": "Study for 3 days in a row",
+      "icon": "🔥",
+      "criteria": { "type": "streak_days", "target": 3 }
+    },
+    {
+      "id": "ach_quizzes_5",
+      "title": "Quiz Novice",
+      "description": "Complete 5 quizzes",
+      "icon": "🧠",
+      "criteria": { "type": "quizzes_completed", "target": 5 }
+    },
+    {
+      "id": "ach_words_50",
+      "title": "Word Collector",
+      "description": "Master 50 words",
+      "icon": "📚",
+      "criteria": { "type": "words_mastered", "target": 50 }
+    }
+  ]
+}
