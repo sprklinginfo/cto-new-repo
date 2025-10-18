@@ -56,6 +56,13 @@
         "prompt": "Type the phrase you would use to ask for a restroom",
         "answer": "Where is the restroom?",
         "relatedVocabId": "w_where_is"
+      },
+      {
+        "id": "q6",
+        "type": "ordering",
+        "prompt": "Arrange the words to form the sentence",
+        "words": ["I", "need", "a", "ticket"],
+        "relatedVocabId": "w_ticket"
       }
     ]
   }

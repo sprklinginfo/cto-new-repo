@@ -26,7 +26,7 @@ export type MCOption = { id: string; text: string }
 
 export type BaseQuestion = {
   id: string
-  type: 'multiple_choice' | 'fill_in' | 'listening'
+  type: 'multiple_choice' | 'fill_in' | 'listening' | 'ordering'
   prompt: string
   relatedVocabId?: string
 }
@@ -48,7 +48,12 @@ export type ListeningQuestion = BaseQuestion & {
   answer: string
 }
 
-export type QuizQuestion = MultipleChoiceQuestion | FillInQuestion | ListeningQuestion
+export type OrderingQuestion = BaseQuestion & {
+  type: 'ordering'
+  words: string[]
+}
+
+export type QuizQuestion = MultipleChoiceQuestion | FillInQuestion | ListeningQuestion | OrderingQuestion
 
 export type Quiz = {
   id: string
