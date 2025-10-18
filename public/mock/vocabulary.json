@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "daily_basics",
+      "title": "Daily Basics",
+      "description": "Common words used in everyday life",
+      "level": "A1",
+      "items": [
+        {
+          "id": "w_hello",
+          "term": "hello",
+          "translation": "你好",
+          "partOfSpeech": "phrase",
+          "example": "Hello, how are you?",
+          "audioUrl": "/audio/hello.mp3"
+        },
+        {
+          "id": "w_water",
+          "term": "water",
+          "translation": "水",
+          "partOfSpeech": "noun",
+          "example": "I need a glass of water.",
+          "audioUrl": "/audio/water.mp3"
+        },
+        {
+          "id": "w_eat",
+          "term": "eat",
+          "translation": "吃",
+          "partOfSpeech": "verb",
+          "example": "We eat dinner at 7 pm.",
+          "audioUrl": "/audio/eat.mp3"
+        }
+      ]
+    },
+    {
+      "id": "travel_phrases",
+      "title": "Travel Phrases",
+      "description": "Useful phrases for travel",
+      "level": "A2",
+      "items": [
+        {
+          "id": "w_ticket",
+          "term": "ticket",
+          "translation": "票",
+          "partOfSpeech": "noun",
+          "example": "I bought a train ticket.",
+          "audioUrl": "/audio/ticket.mp3"
+        },
+        {
+          "id": "w_where_is",
+          "term": "Where is the restroom?",
+          "translation": "洗手间在哪里？",
+          "partOfSpeech": "phrase",
+          "example": "Excuse me, where is the restroom?",
+          "audioUrl": "/audio/where_is_restroom.mp3"
+        }
+      ]
+    }
+  ]
+}

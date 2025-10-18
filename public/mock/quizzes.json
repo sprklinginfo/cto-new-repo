@@ -1,0 +1,62 @@
+[
+  {
+    "id": "qz_basics_1",
+    "title": "Basics Check 1",
+    "level": "A1",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "prompt": "Select the word that means water",
+        "options": [
+          { "id": "o1", "text": "water" },
+          { "id": "o2", "text": "eat" },
+          { "id": "o3", "text": "ticket" }
+        ],
+        "correctOptionId": "o1",
+        "relatedVocabId": "w_water"
+      },
+      {
+        "id": "q2",
+        "type": "fill_in",
+        "prompt": "Type the English word for 你好",
+        "answer": "hello",
+        "relatedVocabId": "w_hello"
+      },
+      {
+        "id": "q3",
+        "type": "listening",
+        "prompt": "Listen and type the word you hear",
+        "audioUrl": "/audio/eat.mp3",
+        "answer": "eat",
+        "relatedVocabId": "w_eat"
+      }
+    ]
+  },
+  {
+    "id": "qz_travel_1",
+    "title": "Travel Phrases 1",
+    "level": "A2",
+    "questions": [
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "prompt": "Which word means 票?",
+        "options": [
+          { "id": "o4", "text": "ticket" },
+          { "id": "o5", "text": "hello" },
+          { "id": "o6", "text": "eat" }
+        ],
+        "correctOptionId": "o4",
+        "relatedVocabId": "w_ticket"
+      },
+      {
+        "id": "q5",
+        "type": "fill_in",
+        "prompt": "Type the phrase you would use to ask for a restroom",
+        "answer": "Where is the restroom?",
+        "relatedVocabId": "w_where_is"
+      }
+    ]
+  }
+]
