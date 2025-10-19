@@ -36,6 +36,7 @@ export const AudioPlayerProvider = ({ children }: { children: React.ReactNode })
         cleanupAudio()
         audioRef.current?.pause()
         const a = new Audio(src)
+        a.preload = 'none'
         audioRef.current = a
         setCurrentSrc(src)
         a.onended = () => setIsPlaying(false)

@@ -2,6 +2,7 @@ import { Box, Button, Card, CardBody, CardHeader, Heading, HStack, SimpleGrid, S
 import { Link as RouterLink } from 'react-router-dom'
 import { useSeedMockData, useQuizzes } from '../hooks/useMockData'
 import { useQuizAttempts } from '../hooks/useQuizAttempts'
+import AttemptHistoryList from '../components/AttemptHistoryList'
 
 const Practice = () => {
   useSeedMockData()
@@ -50,6 +51,11 @@ const Practice = () => {
       <Box bg="white" borderRadius="lg" borderWidth="1px" p={4}>
         <Text fontSize="sm" color="gray.600">Your attempts are saved locally so you can track progress.</Text>
       </Box>
+
+      <Stack spacing={2}>
+        <Heading size="md">Recent attempts</Heading>
+        <AttemptHistoryList />
+      </Stack>
     </Stack>
   )
 }

@@ -1,6 +1,6 @@
 import { Box, HStack, IconButton, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { memo, useCallback, useRef, useState } from 'react'
 import type { VocabularyItem } from '../types/mock'
 import { useAudio } from '../contexts/AudioPlayerContext'
 
@@ -16,50 +16,66 @@ export type FlashcardProps = {
 
 const SWIPE_THRESHOLD = 120
 const LONG_PRESS_MS = 450
+const MOVE_CANCEL_PX = 6
 
 const Flashcard = ({ item, onSwipe, onLongPress, isFavorite, onToggleFavorite }: FlashcardProps) => {
   const { play, isPlaying } = useAudio()
   const [flipped, setFlipped] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const pressTimer = useRef<number | null>(null)
+  const startXY = useRef<{ x: number; y: number } | null>(null)
 
   const x = useMotionValue(0)
   const rotate = useTransform(x, [-160, 0, 160], [-10, 0, 10])
   const bg = useColorModeValue('white', 'gray.800')
   const border = useColorModeValue('gray.100', 'gray.700')
 
-  const clearPressTimer = () => {
+  const clearPressTimer = useCallback(() => {
     if (pressTimer.current) {
       window.clearTimeout(pressTimer.current)
       pressTimer.current = null
     }
-  }
+  }, [])
 
-  const handlePointerDown = () => {
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
     clearPressTimer()
+    startXY.current = { x: e.clientX, y: e.clientY }
     pressTimer.current = window.setTimeout(() => {
       onLongPress?.()
       pressTimer.current = null
     }, LONG_PRESS_MS)
-  }
+  }, [clearPressTimer, onLongPress])
 
-  const handlePointerUp = () => {
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    const start = startXY.current
+    if (!start) return
+    const dx = Math.abs(e.clientX - start.x)
+    const dy = Math.abs(e.clientY - start.y)
+    if (dx > MOVE_CANCEL_PX || dy > MOVE_CANCEL_PX) clearPressTimer()
+  }, [clearPressTimer])
+
+  const handlePointerUp = useCallback(() => {
     clearPressTimer()
-  }
+    startXY.current = null
+  }, [clearPressTimer])
 
-  const handleTap = () => {
+  const handleTap = useCallback(() => {
     if (isDragging) return
     setFlipped((f) => !f)
-  }
+  }, [isDragging])
 
   return (
     <Box position="relative" perspective="1000px" w="full" maxW="sm" mx="auto">
       <MotionBox
         drag="x"
+        dragDirectionLock
         style={{ x, rotate }}
         dragElastic={0.2}
         dragConstraints={{ left: 0, right: 0 }}
-        onDragStart={() => setIsDragging(true)}
+        onDragStart={() => {
+          setIsDragging(true)
+          clearPressTimer()
+        }}
         onDragEnd={(_, info) => {
           setIsDragging(false)
           const { offset, velocity } = info
@@ -69,7 +85,10 @@ const Flashcard = ({ item, onSwipe, onLongPress, isFavorite, onToggleFavorite }:
           x.set(0)
         }}
         onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onPointerLeave={handlePointerUp}
         onTap={handleTap}
         bg={bg}
         borderWidth="1px"
@@ -142,4 +161,4 @@ const Flashcard = ({ item, onSwipe, onLongPress, isFavorite, onToggleFavorite }:
   )
 }
 
-export default Flashcard
+export default memo(Flashcard)
