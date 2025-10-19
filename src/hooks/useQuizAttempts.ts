@@ -27,6 +27,9 @@ export const useQuizAttempts = (quizId?: string) => {
     clearQuizAttempts()
     setAttempts([])
   }, [])
+  const refresh = useCallback(() => {
+    setAttempts(initial())
+  }, [quizId])
 
-  return { attempts, add, update, remove, clear }
+  return { attempts, add, update, remove, clear, refresh }
 }
